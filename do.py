@@ -25,7 +25,7 @@ image = ImageOps.fit(image, size, Image.ANTIALIAS)
 image_array = np.asarray(image)
 
 # display the resized image
-image.show()
+# image.show()
 
 # Normalize the image
 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
