@@ -1,0 +1,12 @@
+<h1>김다미 & 안지영 판독기</h1>
+
+<form method="post" action="/classify/who" enctype="multipart/form-data">
+    이미지를 첨부해주세요
+    <input type="file" name="imageFile">
+    <button type="submit">확인하기</button>
+</form>
+<br>
+
+{% if who %}
+    <h1>{{ who }}입니다.</h1>
+{% endif %}
