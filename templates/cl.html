@@ -16,6 +16,7 @@
 <br>
 
 {% if who %}
+    <img src="{{ url_for('static', filename=image_file) }}" width="150px" height="150px">
     <h1>{{ who }}입니다.</h1>
     <h1>{{ pred }} %</h1>
 {% endif %}

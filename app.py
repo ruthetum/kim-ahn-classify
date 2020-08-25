@@ -54,7 +54,7 @@ def checkKA():
 			who, pred = classify(f)
 			pred = int (round(pred*100))
 			fname = secure_filename(f.filename)
-			path = "./static/" + fname
+			path = "./uploads/" + fname
 			f.save(path)
 			return render_template('cl.html', who=who, pred=pred, image_file=fname)
 		else:
