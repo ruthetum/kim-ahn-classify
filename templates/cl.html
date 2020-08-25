@@ -2,11 +2,34 @@
 
 <form method="post" action="/classify/who" enctype="multipart/form-data">
     이미지를 첨부해주세요
-    <input type="file" name="imageFile">
+    <input
+        type="file"
+        id="imageFile"
+        name="image"
+        accept="image/*"
+        onchange="setThumbnail(event);"
+    />
+    <div id="image_container" style="width: 30%; max-width: 30%;"></div>
+    <br>
     <button type="submit">확인하기</button>
 </form>
 <br>
 
 {% if who %}
     <h1>{{ who }}입니다.</h1>
+    <h1>{{ pred }} %</h1>
 {% endif %}
+
+<script>
+    function setThumbnail(event) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var img = document.createElement("img");
+            img.setAttribute("src", event.target.result);
+            img.width=150;
+            img.height=150;
+            document.querySelector("div#image_container").appendChild(img);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
