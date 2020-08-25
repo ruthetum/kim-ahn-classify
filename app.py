@@ -1,7 +1,9 @@
+import os
 from flask import Flask, render_template, request
 import tensorflow.keras
 from PIL import Image, ImageOps
 import numpy as np
+from werkzeug.utils import secure_filename
 
 def classify(imageFath):
 	np.set_printoptions(suppress=True)
@@ -24,9 +26,9 @@ def classify(imageFath):
 	prediction = model.predict(data)
 	
 	if prediction[0][0] > 0.7:
-		return "김다미"
+		return "김다미", prediction[0][0]
 	elif prediction[0][1] > 0.7:
-		return "안지영"
+		return "안지영", prediction[0][1]
 	else:
 		return "판독 불가"
 
@@ -47,9 +49,16 @@ def classifyKA():
 @app.route('/classify/who', methods = ['GET', 'POST'])
 def checkKA():
 	if request.method == 'POST':
-		value = request.files['imageFile']
-		who = classify(value)
-		return render_template('cl.html', who=who)
+		if request.files['image']:
+			f = request.files['image']
+			who, pred = classify(f)
+			pred = int (round(pred*100))
+			fname = secure_filename(f.filename)
+			path = "./static/" + fname
+			f.save(path)
+			return render_template('cl.html', who=who, pred=pred, image_file=fname)
+		else:
+			return render_template('cl.html', who="이미지가 없어서 판독불가")
 
 if __name__ == '__main__':
 	app.run(debug=True)
