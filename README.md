@@ -14,6 +14,6 @@
 ![image](https://user-images.githubusercontent.com/59307414/91177478-bfbb9c00-e71e-11ea-86cb-b3b52dde3119.png)
 
 ### 🎈 참고 사이트
-- falsk : https://cozy-ho.github.io/
+- flask : https://cozy-ho.github.io/
 - 모델 생성 : https://teachablemachine.withgoogle.com/
 - 이미지 크롤링 : https://github.com/YoongiKim/AutoCrawler
